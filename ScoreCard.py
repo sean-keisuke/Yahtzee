@@ -92,7 +92,7 @@ class ScoreCard:
 		self.setOfFour = n
 
 	def getFullHouse(self):
-		return self.FullHouse
+		return self.fullHouse
 
 	def setFullHouse(self):
 		self.fullHouse = 25
