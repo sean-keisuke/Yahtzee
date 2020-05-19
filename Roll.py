@@ -6,7 +6,6 @@ import random
 
 class Roll:
 
-
 	def __init__(self):
 		self.currentDiceList = [6,6,6,6,6] 
         	self.currentKeep = [] 
