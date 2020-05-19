@@ -8,27 +8,45 @@ class Roll:
 
 
 	def __init__(self):
-		self._current_dice_list = [6,6,6,6,6] 
-        	self._current_kept_dice = [] 
-		self._current_Roll = 3
+		self.currentDiceList = [6,6,6,6,6] 
+        	self.currentKeep = [] 
+		self.currentRoll = 3
 
-	def roll_dice(self): 
-		if self._current_Roll == 3:
-        		self._current_kept_dice *= 0 
-        		self._current_dice_list = [random.randint(1,6) for die in range(0,5)] 
-			self._current_Roll = self._current_Roll - 1 #increment num of times we rolled so far			
-			print 'Current Roll: ' + str(self._current_dice_list)[1:-1] + '\tRolls left: ' + str(self._current_Roll) 		 		
+	def diceRoll(self): 
+		if self.currentRoll == 3:
+        		self.currentKeep *= 0 
+        		self.currentDiceList = [random.randint(1,6) for die in range(0,5)] 
+			self.currentRoll = self.currentRoll - 1 #Decrement num of times we rolled so far			
+			print 'Current Roll: ' + str(self.currentDiceList)[1:-1] + '\tRolls left: ' + str(self.currentRoll)
         	else:
-        		self._current_dice_list = [random.randint(1,6) for die in range(0,5 - (len(self._current_kept_dice)))] 
-			self._current_Roll = self._current_Roll - 1 #increment num of times we rolled so far			
-			print 'Current Roll: ' + str(self._current_dice_list)[1:-1] + '\tRolls left: ' + str(self._current_Roll) 
-			if self._current_Roll == 0: # end of turn
+        		self.currentDiceList = [random.randint(1,6) for die in range(0,5 - (len(self.currentKeep)))] 
+			self.currentRoll = self.currentRoll - 1 #Decrement num of times we rolled so far			
+			print 'Current Roll: ' + str(self.currentDiceList)[1:-1] + '\tRolls left: ' + str(self.currentRoll) 
+			if self.currentRoll == 0: # end of turn
 				print 'end of turn'
-				self._current_Roll = 3				 
+				self.currentRoll = 3				 
 		
-		return self._current_dice_list 
+		return self.currentDiceList 
 
-	def single_values(self,dice_list,check_value):
+	def diceToKeep(self):
+		keepInput = raw_input('which dice do you want to keep (comma separated: e.g. 1,1,5)? ')
+		keepInput = keepInput.split(',')
+
+		if not keepInput:
+			return self.currentDiceList #user doesn't want to keep any die
+
+		dices = [int(item) for item in keepInput]
+	
+		for die in dices:
+			self.currentKeep.append(die)
+			
+		for value in dices:
+			if value in self.currentDiceList:
+				self.currentDiceList.remove(value)
+
+		return self.currentDiceList
+
+	def upperScore(self,dice_list,check_value):
     		roll_score = 0
         	for die in dice_list:
             		if die == check_value:
@@ -47,7 +65,7 @@ class Roll:
 			return True
 		return False
 
-	def Straight(self, dice_list): #2,3,4,5,6 or 1,2,3,4,5
+	def straight(self, dice_list): #2,3,4,5,6 or 1,2,3,4,5
 		dice_list.sort()
 		if len(set(dice_list)) == 5 and dice_list[0] == 2 and dice_list[4] == 6:
 			return True
