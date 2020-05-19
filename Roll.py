@@ -12,6 +12,12 @@ class Roll:
         	self.currentKeep = [] 
 		self.currentRoll = 3
 
+	def getCurrentDice(self):
+		return self.currentDiceList
+
+	def getKeep(self):
+		return self.currentKeep
+
 	def diceRoll(self): 
 		if self.currentRoll == 3:
         		self.currentKeep *= 0 
@@ -24,6 +30,7 @@ class Roll:
 			print 'Current Roll: ' + str(self.currentDiceList)[1:-1] + '\tRolls left: ' + str(self.currentRoll) 
 			if self.currentRoll == 0: # end of turn
 				print 'end of turn'
+				self.lastTurn()
 				self.currentRoll = 3				 
 		
 		return self.currentDiceList 
@@ -45,6 +52,10 @@ class Roll:
 				self.currentDiceList.remove(value)
 
 		return self.currentDiceList
+
+	def lastTurn(self):
+		self.currentKeep = self.currentDiceList + self.currentKeep
+		return self.currentKeep		
 
 	def upperScore(self,dice_list,check_value):
     		roll_score = 0
