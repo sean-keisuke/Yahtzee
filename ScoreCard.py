@@ -7,20 +7,20 @@ class ScoreCard:
 
 	def __init__(self, n):
 		self.scoreCardIndex = n
-		self.ones = 0
-		self.twos = 0
-		self.threes = 0
-		self.fours = 0
-		self.fives = 0
-		self.sixes = 0
-		self.setOfThree = 0
-		self.setOfFour = 0
-		self.fullHouse = 0
-		self.smallStraight = 0
-		self.largeStraight = 0
-		self.chance = 0
-		self.yahtzee = 0
-		self.numOfYahtzee = 0
+		self.ones = -1
+		self.twos = -1
+		self.threes = -1
+		self.fours = -1
+		self.fives = -1
+		self.sixes = -1
+		self.setOfThree = -1
+		self.setOfFour = -1
+		self.fullHouse = -1
+		self.smallStraight = -1
+		self.largeStraight = -1
+		self.chance = -1
+		self.yahtzee = -1
+		self.numOfYahtzee = -1
 		self.upperBonus = False		
 
 	def getIndex(self):
@@ -34,6 +34,9 @@ class ScoreCard:
 			self.yahtzee += 100
 		
 		return self.numOfYahtzee #flag to notify any further yahtzee is bonus
+	
+	def yahtzeeToZero(self):
+		self.yahtzee = 0
 			
 	def addUpper(self): #upper region of scorecard
 		upVal = self.ones + self.twos + self.threes + self.fours + self.fives + self.sixes
@@ -105,18 +108,27 @@ class ScoreCard:
 
 	def setFullHouse(self):
 		self.fullHouse = 25
+	
+	def fullHouseZero(self):
+		self.fullHouse = 0
 
 	def getSmallStraight(self):
 		return self.smallStraight
 
 	def setSmallStraight(self):
 		self.smallStraight = 30
+	
+	def SMStoZero(self):
+		self.smallStraight = 0
 
 	def getLargeStraight(self):
 		return self.largeStraight
 
 	def setLargeStraight(self):
 		self.largeStraight = 40
+	
+	def LGStoZero(self):
+		self.largeStraight = 0
 
 	def getChance(self):
 		return self.chance
