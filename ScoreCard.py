@@ -5,7 +5,8 @@ Yahtzee Player's Scorecard
 
 class ScoreCard:
 
-	def __init__(self):
+	def __init__(self, n):
+		self.scoreCardIndex = n
 		self.ones = 0
 		self.twos = 0
 		self.threes = 0
@@ -20,6 +21,10 @@ class ScoreCard:
 		self.chance = 0
 		self.yahtzee = 0
 		self.numOfYahtzee = 0
+		self.upperBonus = False		
+
+	def getIndex(self):
+		return self.scoreCardIndex
 	
 	def setYahtzee(self):
 		if numOfYahtzee == 0:
@@ -28,15 +33,19 @@ class ScoreCard:
 		else:
 			self.yahtzee += 100
 		
-		return self.numOfYahtzee #flag to notify any further yahtzee is bonus		
+		return self.numOfYahtzee #flag to notify any further yahtzee is bonus
 			
-	def addUpper(self):
+	def addUpper(self): #upper region of scorecard
 		upVal = self.ones + self.twos + self.threes + self.fours + self.fives + self.sixes
-		if upVal >= 63:
+		if upVal >= 63: #if 63 or more, a bonus!
 			upVal += 35
+			self.upperBonus = True
 		return upVal
+	
+	def getUpperBonus(self):
+		return self.upperBonus
 
-	def totalScore(self):
+	def totalScore(self): #add total score!
 		total = self.addUpper()
 		total += self.setOfThree + self.setOfFour + self.fullHouse + self.smallStraight + self.largeStraight + self.chance + self.yahtzee
 		return total
@@ -116,4 +125,4 @@ class ScoreCard:
 		self.chance = n
 	
 	def getYahtzee(self):
-		return yahtzee	
+		return self.yahtzee	
