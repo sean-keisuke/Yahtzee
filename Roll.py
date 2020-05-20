@@ -36,10 +36,13 @@ class Roll:
 
 	def diceToKeep(self): #user input decides which dices to keep after roll
 		keepInput = raw_input('which dice do you want to keep (comma separated: e.g. 1,1,5)? ')
+
+		if keepInput.isspace() or not keepInput:
+			print("GOTHERE")
+			return self.currentDiceList #user doesn't want to keep any die
+
 		keepInput = keepInput.split(',')
 
-		if not keepInput:
-			return self.currentDiceList #user doesn't want to keep any die
 
 		dices = [int(item) for item in keepInput]
 	
