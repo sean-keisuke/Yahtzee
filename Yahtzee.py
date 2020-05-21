@@ -232,43 +232,39 @@ class Yahtzee:
 #MAIN DRIVER
 	
 	playerInput = raw_input('Who is playing the game? (comma separated: e.g. Bob,Jane,Joe)?')	
-	playerInput = keepInput.split(',')
+	playerInput = playerInput.split(',')
 	players = []	
 
 	for input in playerInput:
-		players = players.append(ScoreCard(str(input))
-
-	for x in players:
-		printScoreCard(x)	
+		players.append(ScoreCard(str(input)))
 
 	rounds = 13 # number of rounds per game
 	dice = Roll()
 
-	player1 = ScoreCard("Sean")
-
 	for x in range(rounds):
-		printScoreCard(player1)
-		for y in range(3):
-			dice.diceRoll() #roll the dice
-			if y == 2:
-				break
+		for player in players:
+			printScoreCard(player)
+			for y in range(3):
+				dice.diceRoll() #roll the dice
+				if y == 2:
+					break
 
-			decision = raw_input("Reroll or Score?\nDefault is Reroll\n")
+				decision = raw_input("Reroll or Score?\nDefault is Reroll\n")
 		
-			if "score" in decision.lower():
-				break
-			else:
-				dice.diceToKeep() #select which dice to keep
-				dice.returnDice() #return some possible dices you don't want anymore
-
-		print("\nEnd of turn!\n")
-		decisionHand = dice.lastTurn() #get list of current dices
-		print("current Hand: " + str(decisionHand) + "\n")
-		makeDecision(player1, decisionHand, dice)
+				if "score" in decision.lower():
+					break
+				else:
+					dice.diceToKeep() #select which dice to keep
+					dice.returnDice() #return some possible dices you don't want anymore
+	
+			print("\nEnd of turn!\n")
+			decisionHand = dice.lastTurn() #get list of current dices
+			print("current Hand: " + str(decisionHand) + "\n")
+			makeDecision(player, decisionHand, dice)
 
 	print("end of game")
-	#for loop to iterate through total score for each player
 
-	print(player1.getName() + "total score = " + str(player1.totalScore()) + "\n")
+	for player in players:
+		print(player.getName() + "total score = " + str(player.totalScore()) + "\n")
 
 
