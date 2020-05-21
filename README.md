@@ -4,4 +4,6 @@ I referenced the following website to get a start on my own implementation.
 https://medium.com/better-programming/interview-questions-write-yahtzee-in-python-72695550d84e
 
 To play the game:
-	python Yahtzee.py
+```
+$ python Yahtzee.py
+```
