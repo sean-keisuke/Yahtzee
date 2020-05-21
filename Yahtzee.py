@@ -229,6 +229,18 @@ class Yahtzee:
 				print("Please enter a valid row")
 	
 
+#MAIN DRIVER
+	
+	playerInput = raw_input('Who is playing the game? (comma separated: e.g. Bob,Jane,Joe)?')	
+	playerInput = keepInput.split(',')
+	players = []	
+
+	for input in playerInput:
+		players = players.append(ScoreCard(str(input))
+
+	for x in players:
+		printScoreCard(x)	
+
 	rounds = 13 # number of rounds per game
 	dice = Roll()
 
@@ -242,7 +254,7 @@ class Yahtzee:
 				break
 
 			decision = raw_input("Reroll or Score?\nDefault is Reroll\n")
-			
+		
 			if "score" in decision.lower():
 				break
 			else:
@@ -258,3 +270,5 @@ class Yahtzee:
 	#for loop to iterate through total score for each player
 
 	print(player1.getName() + "total score = " + str(player1.totalScore()) + "\n")
+
+
