@@ -36,20 +36,61 @@ class Roll:
 		return self.currentDiceList 
 
 	def diceToKeep(self): #user input decides which dices to keep after roll
-		keepInput = raw_input('which dice do you want to keep (comma separated: e.g. 1,1,5)? ')
-		if keepInput.isspace() or not keepInput:
-			return self.currentDiceList #user doesn't want to keep any die
-		keepInput = keepInput.split(',')
-		dices = [int(item) for item in keepInput]
-		for die in dices:
-			self.currentKeep.append(die)
-		for value in dices:
-			if value in self.currentDiceList:
-				self.currentDiceList.remove(value)
+		valid = 0
+		while valid != 1:
+			keepInput = raw_input('which dice do you want to keep (comma separated: e.g. 1,1,5)?\nIf you do not want to keep any just leave entry blank\n')
+			if keepInput.isspace() or not keepInput:
+				return self.currentDiceList #user doesn't want to keep any die
+			else:
+				keepInput = keepInput.split(',')
+
+				dices = [item for item in keepInput]
+				for die in dices:
+					if die.isdigit() == False:
+						print(str(die) + " is not a valid dice")
+						break
+					elif int(die) in self.currentDiceList:
+						self.currentKeep.append(int(die))
+						valid = 1
+					else:
+						print(str(die) + " is not an available dice")
+						print("\nCurrent Hand: " +str(self.currentKeep)) 
+						print("\nCurrent Roll: " +str(self.currentDiceList)) 
+						break
+				for value in dices:
+					if int(value) in self.currentDiceList:
+						self.currentDiceList.remove(int(value))
 		return self.currentDiceList
+
+	def returnDice(self):
+		valid = 0
+		while valid != 1:
+			returnInput = raw_input('which dice do you want to return (comma separated: e.g. 1,1,5)?\nIf you do not want to return any just leave it blank\n')
+			if returnInput.isspace() or not returnInput:
+				return self.currentDiceList #user doesn't want to keep any die
+			else:
+				returnInput = returnInput.split(',')
+				dices = [item for item in returnInput]
+				for die in dices:
+					if die.isdigit() == False:
+						print(str(die) + " is not a valid dice")
+						break
+					elif int(die) in self.currentKeep:
+						self.currentDiceList.append(int(die))
+						valid = 1
+					else:
+						print(str(die) + " is not an available dice")
+						print("\nCurrent Hand: " +str(self.currentKeep)) 
+						print("\nCurrent Roll: " +str(self.currentDiceList)) 
+						break
+				for value in dices:
+					if int(value) in self.currentKeep:
+						self.currentKeep.remove(int(value))
+		return self.currentDiceList		
 
 	def lastTurn(self): #forced to keep everything before new round
 		self.currentKeep = self.currentDiceList + self.currentKeep
+
 		self.currentRoll = 3	# reset roll counter
 		return self.currentKeep		
 

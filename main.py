@@ -8,28 +8,35 @@ from ScoreCard import ScoreCard
 class main:
 	
 	def printScoreCard(player):
-		print("\nScoreCard for player " + str(player.getIndex()) +  ":\n")
-		print("Aces:\t\t" + str(player.getOnes()))
-		print("Twos:\t\t" + str(player.getTwos()))
-		print("Threes:\t\t" + str(player.getThrees()))
-		print("Fours:\t\t" + str(player.getFours()))
-		print("Fives:\t\t" + str(player.getFives()))
-		print("Sixes:\t\t" + str(player.getSixes()))
 
-		if player.getUpperBonus:
+		def showZero(n):
+			if n < 0:
+				return 0
+			else:
+				return n
+
+		print("\nScoreCard for " + str(player.getName()) +  ":\n")
+		print("Aces:\t\t" + str(showZero(player.getOnes())))
+		print("Twos:\t\t" + str(showZero(player.getTwos())))
+		print("Threes:\t\t" + str(showZero(player.getThrees())))
+		print("Fours:\t\t" + str(showZero(player.getFours())))
+		print("Fives:\t\t" + str(showZero(player.getFives())))
+		print("Sixes:\t\t" + str(showZero(player.getSixes())))
+
+		if not player.getUpperBonus():
 			print("Upper Bonus:\t0")
 		else:
 			print("Upper Bonus:\t35")
 
-		print("Upper Total:\t" + str(player.addUpper()))
-		print("\n3 of a kind:\t" + str(player.getSetOfThree()))
-		print("4 of a kind:\t" + str(player.getSetOfFour()))
-		print("Full House:\t" + str(player.getFullHouse()))
-		print("Small Straight:\t" + str(player.getSmallStraight()))
-		print("Large Straight:\t" + str(player.getLargeStraight()))
-		print("Chance:\t\t" + str(player.getChance()))
-		print("Yahtzee:\t" + str(player.getYahtzee()))
-		print("\nTotal Score:\t" + str(player.totalScore()) + "\n")
+		print("Upper Total:\t" + str(showZero(player.addUpper())))
+		print("\n3 of a kind:\t" + str(showZero(player.getSetOfThree())))
+		print("4 of a kind:\t" + str(showZero(player.getSetOfFour())))
+		print("Full House:\t" + str(showZero(player.getFullHouse())))
+		print("Small Straight:\t" + str(showZero(player.getSmallStraight())))
+		print("Large Straight:\t" + str(showZero(player.getLargeStraight())))
+		print("Chance:\t\t" + str(showZero(player.getChance())))
+		print("Yahtzee:\t" + str(showZero(player.getYahtzee())))
+		print("\nTotal Score:\t" + str(showZero(player.totalScore())) + "\n")
 	
 
 
@@ -37,7 +44,7 @@ class main:
 		#time to add scores on the scorecard
 		valid = 0
 		
-		def giveScoreUp(category):
+		def giveScoreUp(category): #I think this is gross. change later
 			valid = 0
 			while valid != 1:
 				decision = raw_input("forfeit " + category + "? Enter Yes or No\n")
@@ -51,55 +58,91 @@ class main:
 			decision = raw_input("which row would you like to fill? \nFor list of acceptable keywords, type 'help'\n")
 			if "aces" in decision.lower():
 	    			if player.getOnes() == -1:
+		    			if 1 not in currentHand:
+						if giveScoreUp("Ones") == True:
+							player.setOnes(helper.upperScore(currentHand,6))
+							valid = 1
+						else:
+							print("Not a valid selection, please try again.")
 					player.setOnes(helper.upperScore(currentHand,1))
 					valid = 1
 				else:
 					print("Not a valid selection, please try again.")
 			elif "twos" in decision.lower():
     				if player.getTwos() == -1:
+		    			if 2 not in currentHand:
+						if giveScoreUp("Twos") == True:
+							player.setTwos(helper.upperScore(currentHand,6))
+							valid = 1
+						else:
+							print("Not a valid selection, please try again.")
     					player.setTwos(helper.upperScore(currentHand,2))
 					valid = 1
 				else:
 					print("Not a valid selection, please try again.")
 			elif "threes" in decision.lower():
     	    			if player.getThrees() == -1:
+		    			if 3 not in currentHand:
+						if giveScoreUp("Threes") == True:
+							player.setThrees(helper.upperScore(currentHand,6))
+							valid = 1
+						else:
+							print("Not a valid selection, please try again.")
 					player.setThrees(helper.upperScore(currentHand,3))
 					valid = 1
 				else:
 					print("Not a valid selection, please try again.")
 			elif "fours" in decision.lower():
 				if player.getFours() == -1:
+		    			if 4 not in currentHand:
+						if giveScoreUp("Fours") == True:
+							player.setFours(helper.upperScore(currentHand,6))
+							valid = 1
+						else:
+							print("Not a valid selection, please try again.")
     					player.setFours(helper.upperScore(currentHand,4))
 					valid = 1
 				else:
 					print("Not a valid selection, please try again.")
 			elif "fives" in decision.lower():
     				if player.getFives() == -1:
+					if 5 not in currentHand:
+						if giveScoreUp("Fives") == True:
+							player.setFives(helper.upperScore(currentHand,6))
+							valid = 1
+						else:
+							print("Not a valid selection, please try again.")
 					player.setFives(helper.upperScore(currentHand,5))
 					valid = 1
 				else:
 					print("Not a valid selection, please try again.")
 			elif "sixes" in decision.lower():
     				if player.getSixes() == -1:
-		    			player.setSixes(helper.upperScore(currentHand,6))
+		    			if 6 not in currentHand:
+						if giveScoreUp("Sixes") == True:
+							player.setSixes(helper.upperScore(currentHand,6))
+							valid = 1
+						else:
+							print("Not a valid selection, please try again.")
+					player.setSixes(helper.upperScore(currentHand,6))
 					valid = 1
 				else:
 					print("Not a valid selection, please try again.")
 			elif "3 of a kind" in decision.lower():
-    				if player.getThreeOfKind() == -1 and helper.threeOfKind(currentHand):
+    				if player.getSetOfThree() == -1 and helper.threeOfKind(currentHand):
 	    				player.setSetOfThree(helper.chance(currentHand))
 					valid = 1
-				elif player.getThreeOfKind() == -1 and helper.ThreeOfKind(currentHand) == False:
+				elif player.getSetOfThree() == -1 and helper.ThreeOfKind(currentHand) == False:
 					if giveScoreUp("Three of a Kind") == True:
 						player.setSetOfThree(0)
 						valid = 1
 				else:
 					print("Not a valid selection, please try again.")	
 			elif "4 of a kind" in decision.lower():
-    				if player.getFourOfKind() == -1 and helper.FourOfKind(currentHand):
+    				if player.getSetOfFour() == -1 and helper.FourOfKind(currentHand):
 	    				player.setSetOfFour(helper.chance(currentHand))
 					valid = 1
-				elif player.getFourOfKind() == -1 and helper.FourOfKind(currentHand) == False:
+				elif player.getSetOfFour() == -1 and helper.FourOfKind(currentHand) == False:
 					if giveScoreUp("Four of a Kind") == True:
 						player.setSetOfFour(0)
 						valid = 1
@@ -116,7 +159,7 @@ class main:
 				else:
 					print("Not a valid selection, please try again.")
 			elif "small straight" in decision.lower():
-   				if player.getSmallStraight() == -1 and helper.smallStraight(currentHand):
+   				if player.getSmallStraight() == -1 and helper.smallStraight(currentHand) == True:
 	    				player.setSmallStraight()
 					valid = 1
 				elif player.getSmallStraight() == -1 and helper.smallStraight(currentHand) == False:
@@ -166,26 +209,26 @@ class main:
 	rounds = 13 # number of rounds per game
 	dice = Roll()
 
-	player1 = ScoreCard(1)
+	player1 = ScoreCard("Sean")
 
 	for x in range(rounds):
 		printScoreCard(player1)
-		for y in range(3):
+		for y in range(2):
 			if y > 0:
-				decision = raw_input("Reroll or Score?\n")
+				decision = raw_input("Reroll or Score?\nDefault is Reroll")
 				if "score" in decision.lower():
 					break
-				elif decision.lower() not in "reroll":
-					print("Invalid, try again")
-					y -= 1
-					dice.resetCurrRoll()
-
+				
 			dice.diceRoll() #roll the dice
 			dice.diceToKeep() #select which dice to keep
+			dice.returnDice() #return some possible dices you don't want anymore
 
 		decisionHand = dice.lastTurn() #get list of current dices
+		print("current Hand: " + str(decisionHand))
 		makeDecision(player1, decisionHand, dice)
 		print("end of turn")
 
 	print("end of game")
-	print("player 1 total score = " + player1.totalScore())
+	#for loop to iterate through total score for each player
+
+	print("player 1 total score = " + player1.totalScore() + "\n")

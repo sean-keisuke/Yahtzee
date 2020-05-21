@@ -6,7 +6,7 @@ Yahtzee Player's Scorecard
 class ScoreCard:
 
 	def __init__(self, n):
-		self.scoreCardIndex = n
+		self.scoreCardName = n #name of player
 		self.ones = -1
 		self.twos = -1
 		self.threes = -1
@@ -23,8 +23,8 @@ class ScoreCard:
 		self.numOfYahtzee = -1
 		self.upperBonus = False		
 
-	def getIndex(self):
-		return self.scoreCardIndex
+	def getName(self):
+		return self.scoreCardName 
 	
 	def setYahtzee(self):
 		if numOfYahtzee == 0:
