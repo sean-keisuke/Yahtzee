@@ -22,9 +22,20 @@ class ScoreCard:
 		self.yahtzee = -1
 		self.numOfYahtzee = -1
 		self.upperBonus = False		
+		self.decisionList = ["aces", "twos", "threes", "fours", "fives", "sixes", "3 of a kind", "4 of a kind", "Full House", "Small Straight", "Large Straight", "Chance", "Yahtzee"] 
 
 	def getName(self):
 		return self.scoreCardName 
+	
+	def removeDecision(self, n):
+		self.decisionList.remove(n)
+		return self.decisionList
+	
+	def getDecisionList(self):
+		return self.decisionList
+
+	def getnumOfYahtzee(self):
+		return self.numOfYahtzee
 	
 	def setYahtzee(self):
 		if numOfYahtzee == 0:
@@ -37,9 +48,22 @@ class ScoreCard:
 	
 	def yahtzeeToZero(self):
 		self.yahtzee = 0
-			
+	
+	def checkZero(self, n):
+		if n < 0:
+			return 0
+		else:
+			return n
+		
 	def addUpper(self): #upper region of scorecard
-		upVal = self.ones + self.twos + self.threes + self.fours + self.fives + self.sixes
+		upVal = 0
+		upVal += self.checkZero(self.ones)		
+		upVal += self.checkZero(self.twos)		
+		upVal += self.checkZero(self.threes)		
+		upVal += self.checkZero(self.fours)		
+		upVal += self.checkZero(self.fives)		
+		upVal += self.checkZero(self.sixes)		
+
 		if upVal >= 63: #if 63 or more, a bonus!
 			upVal += 35
 			self.upperBonus = True
@@ -50,7 +74,13 @@ class ScoreCard:
 
 	def totalScore(self): #add total score!
 		total = self.addUpper()
-		total += self.setOfThree + self.setOfFour + self.fullHouse + self.smallStraight + self.largeStraight + self.chance + self.yahtzee
+		total += self.checkZero(self.setOfThree)
+		total += self.checkZero(self.setOfFour)
+		total += self.checkZero(self.fullHouse)
+		total += self.checkZero(self.smallStraight)
+		total += self.checkZero(self.largeStraight)
+		total += self.checkZero(self.chance)
+		total += self.checkZero(self.yahtzee)
 		return total
 
 	#boring setters/getters
