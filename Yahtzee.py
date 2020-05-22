@@ -231,6 +231,13 @@ class Yahtzee:
 
 #MAIN DRIVER
 	
+	print("\nWelcome to YAHTZEE!\n")
+	print("-------\t-------\t-------\t-------\t-------\t-------")
+	print("|     |\t|o    |\t|o    |\t|o   o|\t|o   o|\t|o   o|")
+	print("|  o  |\t|     |\t|  o  |\t|     |\t|  o  |\t|o   o|")
+	print("|     |\t|    o|\t|    o|\t|o   o|\t|o   o|\t|o   o|")
+	print("-------\t-------\t-------\t-------\t-------\t-------\n")
+
 	playerInput = raw_input('Who is playing the game? (comma separated: e.g. Bob,Jane,Joe)?')	
 	playerInput = playerInput.split(',')
 	players = []	
@@ -269,7 +276,7 @@ class Yahtzee:
 
 	for player in players:
 		print(player.getName() + " total score = " + str(player.totalScore()) + "\n")
-		if player.totalScore() > winningScore
+		if player.totalScore() > winningScore:
 			winningPlayer = player.getName()
 			winningScore = player.totalScore()
 
