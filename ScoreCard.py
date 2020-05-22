@@ -38,7 +38,7 @@ class ScoreCard:
 		return self.numOfYahtzee
 	
 	def setYahtzee(self):
-		if numOfYahtzee == 0:
+		if self.numOfYahtzee < 0:
 			self.numOfYahtzee = 1
 			self.yahtzee = 50
 		else:
@@ -46,6 +46,7 @@ class ScoreCard:
 		
 		return self.numOfYahtzee #flag to notify any further yahtzee is bonus
 	
+
 	def yahtzeeToZero(self):
 		self.yahtzee = 0
 	
