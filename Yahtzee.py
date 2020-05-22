@@ -55,7 +55,7 @@ class Yahtzee:
 			return False
 
 		while valid != 1:
-			decision = raw_input("which row would you like to fill? \nFor list of acceptable keywords, type 'help'\n")
+			decision = raw_input("which row would you like to fill? \nFor list of possible moves, type 'help'\n")
 			if "aces" in decision.lower():
 	    			if player.getOnes() == -1:
 		    			if 1 not in currentHand:
