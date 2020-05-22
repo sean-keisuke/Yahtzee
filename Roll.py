@@ -48,21 +48,19 @@ class Roll:
 				dices = [item for item in keepInput]
 				for die in dices:
 					if die.isdigit() == False:
-						print(str(die) + " is not a valid dice, try again!\n")
+						print("\n" + str(die) + " is not a valid dice, try again!\n")
+						valid = 0
 						break
 					elif int(die) in self.currentDiceList:
 						self.currentKeep.append(int(die))
+						self.currentDiceList.remove(int(die))
 						valid = 1
 					else:
-						print(str(die) + " is not an available dice")
+						print("\n" + str(die) + " is not an available dice")
 						print("\nCurrent Hand: " +str(self.currentKeep)) 
 						print("\nCurrent Roll: " +str(self.currentDiceList)) 
+						valid = 0
 						break
-				for value in dices:
-					if value.isdigit() == False:
-						break
-					elif int(value) in self.currentDiceList:
-						self.currentDiceList.remove(int(value))
 		return self.currentDiceList
 
 	def returnDice(self):
@@ -76,21 +74,19 @@ class Roll:
 				dices = [item for item in returnInput]
 				for die in dices:
 					if die.isdigit() == False:
-						print(str(die) + " is not a valid dice, try again!\n")
+						print("\n" + str(die) + " is not a valid dice, try again!\n")
+						valid = 0
 						break
 					elif int(die) in self.currentKeep:
 						self.currentDiceList.append(int(die))
+						self.currentKeep.remove(int(die))
 						valid = 1
 					else:
-						print(str(die) + " is not an available dice")
+						print("\n" + str(die) + " is not an available dice")
 						print("\nCurrent Hand: " +str(self.currentKeep)) 
 						print("\nCurrent Roll: " +str(self.currentDiceList)) 
+						valid = 0
 						break
-				for value in dices:
-					if value.isdigit() == False:
-						break
-					elif int(value) in self.currentKeep:
-						self.currentKeep.remove(int(value))
 		return self.currentDiceList		
 
 	def lastTurn(self): #forced to keep everything before new round

@@ -238,7 +238,7 @@ class Yahtzee:
 	print("|     |\t|    o|\t|    o|\t|o   o|\t|o   o|\t|o   o|")
 	print("-------\t-------\t-------\t-------\t-------\t-------\n")
 
-	playerInput = raw_input('Who is playing the game? (comma separated: e.g. Bob,Jane,Joe)?')	
+	playerInput = raw_input('Who is playing the game? (comma separated: e.g. Bob,Jane,Joe)?\n')	
 	playerInput = playerInput.split(',')
 	players = []	
 
@@ -256,7 +256,7 @@ class Yahtzee:
 				if y == 2:
 					break
 
-				decision = raw_input("Reroll or Score?\nDefault is Reroll\n")
+				decision = raw_input("Reroll or Score?\nDefault is Reroll, if 'score' isn't explicitly stated, you will reroll...\n")
 		
 				if "score" in decision.lower():
 					break
