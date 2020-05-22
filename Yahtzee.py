@@ -268,6 +268,9 @@ class Yahtzee:
 			decisionHand = dice.lastTurn() #get list of current dices
 			print("current Hand: " + str(decisionHand) + "\n")
 			makeDecision(player, decisionHand, dice)
+			print("\nSCORECARD UPDATED:\n*****************")
+			printScoreCard(player)
+			print("__________________________\n")
 
 	print("end of game")
 
@@ -280,4 +283,4 @@ class Yahtzee:
 			winningPlayer = player.getName()
 			winningScore = player.totalScore()
 
-	print(winningPlayer + " IS THE WINNER! CONGRATS! YOU ARE THE BIG HOT POTATO!")
+	print(winningPlayer + " IS THE WINNER! CONGRATS! YOU ARE THE BIG HOT POTATO!\n")
