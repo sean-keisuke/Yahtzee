@@ -264,7 +264,13 @@ class Yahtzee:
 
 	print("end of game")
 
+	winningScore = -1
+	winningPlayer = ""
+
 	for player in players:
-		print(player.getName() + "total score = " + str(player.totalScore()) + "\n")
+		print(player.getName() + " total score = " + str(player.totalScore()) + "\n")
+		if player.totalScore() > winningScore
+			winningPlayer = player.getName()
+			winningScore = player.totalScore()
 
-
+	print(winningPlayer + " IS THE WINNER! CONGRATS! YOU ARE THE BIG HOT POTATO!")
