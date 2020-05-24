@@ -54,70 +54,75 @@ class Yahtzee:
 	    			if "aces" in player.getDecisionList(): #if possible move
 		    			if 1 not in currentHand:
 						if giveScoreUp("Aces") == True:
-							player.setOnes(helper.upperScore(currentHand,6))
+							player.setOnes(helper.upperScore(currentHand,1))
 							player.removeDecision("aces")
 							valid = 1
 						else:
 							print("Not a valid selection, please try again.")
-					player.setOnes(helper.upperScore(currentHand,1))
-					player.removeDecision("aces")
-					valid = 1
+					else:
+						player.setOnes(helper.upperScore(currentHand,1))
+						player.removeDecision("aces")
+						valid = 1
 				else:
 					print("Not a valid selection, please try again.")
 			elif "twos" in decision.lower():
 				if "twos" in player.getDecisionList():
 		    			if 2 not in currentHand:
 						if giveScoreUp("Twos") == True:
-							player.setTwos(helper.upperScore(currentHand,6))
+							player.setTwos(helper.upperScore(currentHand,2))
 							player.removeDecision("twos")
 							valid = 1
 						else:
 							print("Not a valid selection, please try again.")
-    					player.setTwos(helper.upperScore(currentHand,2))
-					player.removeDecision("twos")
-					valid = 1
+    					else:
+						player.setTwos(helper.upperScore(currentHand,2))
+						player.removeDecision("twos")
+						valid = 1
 				else:
 					print("Not a valid selection, please try again.")
 			elif "threes" in decision.lower():
 				if "threes" in player.getDecisionList():
 		    			if 3 not in currentHand:
 						if giveScoreUp("Threes") == True:
-							player.setThrees(helper.upperScore(currentHand,6))
+							player.setThrees(helper.upperScore(currentHand,3))
 							player.removeDecision("threes")
 							valid = 1
 						else:
 							print("Not a valid selection, please try again.")
-					player.setThrees(helper.upperScore(currentHand,3))
-					player.removeDecision("threes")
-					valid = 1
+					else:
+						player.setThrees(helper.upperScore(currentHand,3))
+						player.removeDecision("threes")
+						valid = 1
 				else:
 					print("Not a valid selection, please try again.")
 			elif "fours" in decision.lower():
 				if "fours" in player.getDecisionList():
 		    			if 4 not in currentHand:
 						if giveScoreUp("Fours") == True:
-							player.setFours(helper.upperScore(currentHand,6))
+							player.setFours(helper.upperScore(currentHand,4))
 							player.removeDecision("fours")
 							valid = 1
 						else:
 							print("Not a valid selection, please try again.")
-    					player.setFours(helper.upperScore(currentHand,4))
-					player.removeDecision("fours")
-					valid = 1
+    					else:
+						player.setFours(helper.upperScore(currentHand,4))
+						player.removeDecision("fours")
+						valid = 1
 				else:
 					print("Not a valid selection, please try again.")
 			elif "fives" in decision.lower():
 				if "fives" in player.getDecisionList():
 					if 5 not in currentHand:
 						if giveScoreUp("Fives") == True:
-							player.setFives(helper.upperScore(currentHand,6))
+							player.setFives(helper.upperScore(currentHand,5))
 							player.removeDecision("fives")
 							valid = 1
 						else:
 							print("Not a valid selection, please try again.")
-					player.setFives(helper.upperScore(currentHand,5))
-					player.removeDecision("fives")
-					valid = 1
+					else:
+						player.setFives(helper.upperScore(currentHand,5))
+						player.removeDecision("fives")
+						valid = 1
 				else:
 					print("Not a valid selection, please try again.")
 			elif "sixes" in decision.lower():
@@ -129,9 +134,10 @@ class Yahtzee:
 							valid = 1
 						else:
 							print("Not a valid selection, please try again.")
-					player.setSixes(helper.upperScore(currentHand,6))
-					player.removeDecision("sixes")
-					valid = 1
+					else:
+						player.setSixes(helper.upperScore(currentHand,6))
+						player.removeDecision("sixes")
+						valid = 1
 				else:
 					print("Not a valid selection, please try again.")
 			elif "3 of a kind" in decision.lower():
